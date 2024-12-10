@@ -199,6 +199,11 @@ location = ${REPOS_BASE//\\/\\\\}/${name//\\/\\\\}\\
 sync-type = ${sync_type//\\/\\\\}\\
 sync-uri = ${sync_uri//\\/\\\\}"
 
+	if [[ ${name} == gentoo && ${sync_type} == git ]]; then
+		new_lines+="\\
+sync-git-verify-commit-signature = true"
+	fi
+
 	add_to_repos_conf "${name}" "${new_lines}"
 
 	echo "Repository ${name} added"
